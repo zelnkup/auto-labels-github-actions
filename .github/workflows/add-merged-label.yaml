@@ -8,8 +8,14 @@ jobs:
   if_merged:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-ecosystem/action-add-labels@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Add labels
+        uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: |
             MERGED
+      - name: Remove labels
+        uses: actions-ecosystem/action-remove-labels@v1
+        with:
+          labels: READY TO MERGE

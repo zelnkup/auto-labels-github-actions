@@ -1,0 +1,24 @@
+name: Add ready to merge label
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  modify_labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Remove labels
+        uses: actions-ecosystem/action-remove-labels@v1
+        if: github.event.review.state == 'approved'
+        with:
+          labels: READY TO REVIEW
+
+      - name: Add labels
+        uses: actions-ecosystem/action-add-labels@v1
+        if: github.event.review.state == 'approved'
+        with:
+          labels: READY TO MERGE
