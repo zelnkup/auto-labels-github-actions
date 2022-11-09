@@ -1,0 +1,15 @@
+name: Add ready to review label
+
+on:
+  pull_request:
+    types: opened
+
+jobs:
+  add_labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: |
+            READY TO REVIEW
