@@ -1,15 +1,15 @@
-name: Add Labels
+name: Add merged label
 
 on:
   pull_request:
-    types: opened
+    types: closed
 
 jobs:
-  add_labels:
+  if_merged:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: |
-            bug
+            MERGED
