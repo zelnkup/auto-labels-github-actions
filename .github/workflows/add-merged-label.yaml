@@ -14,7 +14,7 @@ jobs:
         id: get_list_of_labels
         uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
         with:
-          stringArray: ${{ github.event.pull_request.labels.*.name }}
+          stringArray: ${{ toJSON(github.event.pull_request.labels.*.name) }}
       - name: Print modified labels
         run: echo '${{ steps.get_list_of_labels.outputs.stringList }}'
       - name: echo
