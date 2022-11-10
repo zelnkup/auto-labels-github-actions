@@ -18,4 +18,6 @@ jobs:
       - name: Remove labels
         uses: actions-ecosystem/action-remove-labels@v1
         with:
-          labels: ${{ toJson(github.event.pull_request.labels.*.name) }}
+          labels: for i in ${{ toJson(github.event.pull_request.labels.*.name) }}; do
+                    echo $i
+                  done
