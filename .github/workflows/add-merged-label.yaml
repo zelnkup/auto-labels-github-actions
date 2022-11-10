@@ -15,10 +15,14 @@ jobs:
         uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
         with:
           stringArray: ${{ toJSON(github.event.pull_request.labels.*.name) }}
-      - name: Remove labels
-        uses: actions-ecosystem/action-remove-labels@v1
-        with:
-          labels: ${{ steps.get_list_of_labels.outputs.stringList }}
+#      - name: Remove labels
+#        uses: actions-ecosystem/action-remove-labels@v1
+#        with:
+#          labels: ${{ steps.get_list_of_labels.outputs.stringList }}
+      - name: echo
+        run:
+            echo ${{ steps.get_list_of_labels.outputs.stringList }}
+            echo ${{ fromJson(steps.get_list_of_labels.outputs.stringList) }}
       - name: Add labels
         uses: actions-ecosystem/action-add-labels@v1
         with:
