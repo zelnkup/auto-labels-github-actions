@@ -18,4 +18,4 @@ jobs:
       - name: Remove labels
         uses: actions-ecosystem/action-remove-labels@v1
         with:
-          labels: READY TO MERGE
+          labels: github.event.pull_request.labels

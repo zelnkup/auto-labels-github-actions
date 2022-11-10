@@ -15,7 +15,7 @@ jobs:
         uses: actions-ecosystem/action-remove-labels@v1
         if: github.event.review.state == 'approved'
         with:
-          labels: READY TO REVIEW
+          labels: github.event.pull_request.labels
 
       - name: Add labels
         uses: actions-ecosystem/action-add-labels@v1
