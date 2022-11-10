@@ -11,11 +11,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Remove labels
-        uses: actions-ecosystem/action-remove-labels@v1
-        if: github.event.review.state == 'approved'
+      - name: Remove previous labels
+        uses: rogerluan/label-remover@v1.0.1
         with:
-          labels: github.event.pull_request.labels.*.name
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add labels
         uses: actions-ecosystem/action-add-labels@v1
