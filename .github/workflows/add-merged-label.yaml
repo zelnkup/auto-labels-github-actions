@@ -16,8 +16,8 @@ jobs:
           labels: |
             MERGED
       - name: echo labels
-        run: echo ${{ github.event.pull_request.labels.*.name }}
+        run: echo ${{ toJson(github.event.pull_request.labels.*.name) }}
       - name: Remove labels
         uses: actions-ecosystem/action-remove-labels@v1
         with:
-          labels: github.event.pull_request.labels.*.name
+          labels: toJson(github.event.pull_request.labels.*.name)
