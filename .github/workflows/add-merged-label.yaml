@@ -10,6 +10,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Create list of labels
+        id: get_list_of_labels
+        uses: lucaspinheirogit/list-from-string-array-action@v1.4.3
+        with:
+          stringArray: ${{ github.event.pull_request.labels.*.name }}
+      - name: Print modified labels
+        run: echo '${{ steps.get_list_of_labels.outputs.stringList }}'
       - name: echo
         env:
           JSON: ${{ toJSON(github.event.pull_request.labels.*.name) }}
@@ -17,7 +24,7 @@ jobs:
       - name: Remove labels
         uses: actions-ecosystem/action-remove-labels@v1
         with:
-          labels: READY FOR REVIEW
+          labels: READY TO REVIEW
       - name: Add labels
         uses: actions-ecosystem/action-add-labels@v1
         with:
