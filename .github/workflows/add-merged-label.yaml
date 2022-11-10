@@ -21,8 +21,8 @@ jobs:
 #          labels: ${{ steps.get_list_of_labels.outputs.stringList }}
       - name: echo
         run:
-            echo ${{ steps.get_list_of_labels.outputs.stringList }}
-            echo ${{ fromJson(steps.get_list_of_labels.outputs.stringList) }}
+            echo "${{ github.event.pull_request.labels.*.name }}"
+            echo "${{ fromJson(github.event.pull_request.labels.*.name) }}"
       - name: Add labels
         uses: actions-ecosystem/action-add-labels@v1
         with:
