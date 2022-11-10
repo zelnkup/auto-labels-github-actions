@@ -20,7 +20,7 @@ jobs:
 #        with:
 #          labels: ${{ steps.get_list_of_labels.outputs.stringList }}
       - name: echo
-        run:
+        run: |
             echo "${{ github.event.pull_request.labels.*.name }}"
             echo "${{ fromJson(github.event.pull_request.labels.*.name) }}"
       - name: Add labels
