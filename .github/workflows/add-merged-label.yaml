@@ -11,8 +11,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: echo
-        run:
-          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
+        env:
+          JSON: ${{ toJSON(github.event.pull_request.labels.*.name) }}
+        run: echo $JSON
       - name: Remove labels
         uses: actions-ecosystem/action-remove-labels@v1
         with:
