@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
       - name: echo
         run:
-          echo toJson(github.event.pull_request.labels.*.name)
+          echo "${{ toJson(github.event.pull_request.labels.*.name) }}"
       - name: Remove labels
         uses: actions-ecosystem/action-remove-labels@v1
         with:
