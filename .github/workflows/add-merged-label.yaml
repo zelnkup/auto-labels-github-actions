@@ -10,14 +10,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Remove labels
+        uses: actions-ecosystem/action-remove-labels@v1
+        env:
+            labels: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          labels: ${{ for i in ${{ toJson(github.event.pull_request.labels.*.name) }}; do echo $i done }}
       - name: Add labels
         uses: actions-ecosystem/action-add-labels@v1
         with:
           labels: |
             MERGED
-      - name: Remove labels
-        uses: actions-ecosystem/action-remove-labels@v1
-        with:
-          labels: for i in ${{ toJson(github.event.pull_request.labels.*.name) }}; do
-                    echo $i
-                  done
